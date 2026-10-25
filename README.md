@@ -27,3 +27,5 @@ git branch -M main
 git remote add origin <your-repo-url>
 git push -u origin main
 ```
+### Project Files (CAD)
+* [https://drive.google.com/drive/folders/1BAvE_N6MwyAIFVa_VgnP7E-A-aaA5A-d?usp=sharing]
