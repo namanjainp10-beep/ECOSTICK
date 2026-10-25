@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECOSTICK – Portable Environmental Monitor</title>
+<meta name="description" content="Live air quality, weather, rain likelihood and soil readings from your ECOSTICK.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>ECOSTICK</h1>
+  <p class="tag">Air, weather and soil at your spot</p>
+  <div class="status"><span id="dot" class="dot"></span><span id="statusText">Starting…</span></div>
+</header>
+
+<main class="layout">
+  <!-- The device itself: upper = air zone, lower = soil zone -->
+  <aside class="stick" aria-label="ECOSTICK device status">
+    <div class="zone air" id="stickAir">
+      <span class="zlabel">Air</span>
+      <strong id="stickAqi">–</strong>
+      <span id="stickCat">–</span>
+    </div>
+    <div class="zone env">
+      <span id="stickTemp">–</span>
+      <span id="stickHum">–</span>
+    </div>
+    <div class="zone soil">
+      <div class="fill" id="soilFill"></div>
+      <span class="zlabel">Soil</span>
+      <strong id="stickSoil">–</strong>
+    </div>
+  </aside>
+
+  <div class="panels">
+    <section class="card" aria-labelledby="h-air">
+      <h2 id="h-air">Air quality</h2>
+      <p class="big"><span id="aqi">–</span> <small>AQI</small></p>
+      <p id="aqiMsg" class="msg">Waiting for data.</p>
+      <div class="grid">
+        <div class="m"><span>PM2.5</span><b id="pm25">–</b><i>µg/m³</i></div>
+        <div class="m"><span>PM10</span><b id="pm10">–</b><i>µg/m³</i></div>
+        <div class="m"><span>Trend</span><b id="aqiTrend">–</b><i>last 10 readings</i></div>
+      </div>
+      <p id="sourceHint" class="hint"></p>
+    </section>
+
+    <section class="card" aria-labelledby="h-wx">
+      <h2 id="h-wx">Weather and rain</h2>
+      <div class="grid">
+        <div class="m"><span>Temperature</span><b id="temp">–</b><i>°C</i></div>
+        <div class="m"><span>Humidity</span><b id="hum">–</b><i>%</i></div>
+        <div class="m"><span>Pressure</span><b id="pres">–</b><i>hPa</i></div>
+      </div>
+      <div class="rain">
+        <div class="bar" role="img" aria-label="Rain likelihood"><div id="rainBar"></div></div>
+        <p><b id="rainPct">–</b> chance of rain soon · <span id="rainWhy">–</span></p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-soil">
+      <h2 id="h-soil">Soil and plants</h2>
+      <div class="grid">
+        <div class="m"><span>Moisture</span><b id="soil">–</b><i>%</i></div>
+        <div class="m"><span>Soil pH</span><b id="ph">–</b><i>6.0–7.5 suits most plants</i></div>
+        <div class="m"><span>Soil temp</span><b id="soilT">–</b><i>°C</i></div>
+      </div>
+      <ul id="advice" class="advice"></ul>
+    </section>
+
+    <section class="card wide" aria-labelledby="h-hist">
+      <h2 id="h-hist">History</h2>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <svg id="chart" viewBox="0 0 600 160" preserveAspectRatio="none" role="img" aria-label="History chart"></svg>
+      <p class="hint" id="chartNote"></p>
+      <div class="actions">
+        <button id="pauseBtn" type="button">Pause</button>
+        <button id="csvBtn" type="button">Download CSV</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  Readings are indicative and do not replace certified monitoring stations.
+  <span id="modeNote"></span>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+:root{
+  --bg:#eef2ea; --card:#fbfcf8; --ink:#1a2a20; --mute:#5b6b60; --line:#d3dccd;
+  --moss:#2e6b45; --soil:#6b4a2f; --accent:#2e6b45; --aq:#9aa59e;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#121a15; --card:#1a251d; --ink:#e7efe6; --mute:#9bab9f; --line:#2c3b30; --moss:#6fcf8f; --soil:#c49a6c; --accent:#6fcf8f;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.top{max-width:1100px;margin:0 auto;padding:28px 20px 8px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+h1{margin:0;font-size:2rem;letter-spacing:.04em;font-weight:800}
+.tag{margin:0;color:var(--mute);flex:1}
+.status{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--mute)}
+.dot{width:10px;height:10px;border-radius:50%;background:#aaa}
+.dot.live{background:#2fb35f}.dot.demo{background:#d9a21b}.dot.err{background:#d64545}
+.layout{max-width:1100px;margin:0 auto;padding:12px 20px 30px;display:grid;grid-template-columns:150px 1fr;gap:28px}
+/* the stick */
+.stick{position:sticky;top:16px;align-self:start;height:560px;width:150px;border-radius:75px 75px 18px 18px;overflow:hidden;border:3px solid var(--ink);display:flex;flex-direction:column;background:var(--card)}
+.zone{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px}
+.zlabel{font-size:.8rem;opacity:.8}
+.air{flex:0 0 40%;background:var(--aq);color:#101a14;padding-top:28px;transition:background .6s}
+.air strong{font-size:3rem;line-height:1}
+.env{flex:0 0 16%;gap:2px;border-block:3px solid var(--ink);font-weight:600}
+.soil{flex:1;position:relative;background:#e4d5c0;color:#2a1c10;overflow:hidden}
+.soil>*{position:relative;z-index:1}
+.soil strong{font-size:1.8rem}
+.fill{position:absolute;inset:auto 0 0 0;height:var(--lvl,0%);background:#8a5f3a;opacity:.55;transition:height .8s,width .8s;z-index:0}
+.soil .fill{z-index:0}
+/* panels */
+.panels{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card.wide{grid-column:1/-1}
+h2{margin:0 0 10px;font-size:1.1rem}
+.big{margin:0;font-size:3.2rem;font-weight:800;line-height:1.1}
+.big small{font-size:1rem;font-weight:500;color:var(--mute)}
+.msg{margin:4px 0 14px}
+.hint{color:var(--mute);font-size:.9rem;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.m{display:flex;flex-direction:column;border-left:3px solid var(--line);padding-left:10px}
+.m span{font-size:.85rem;color:var(--mute)}
+.m b{font-size:1.5rem}
+.m i{font-style:normal;font-size:.75rem;color:var(--mute)}
+.rain{margin-top:16px}
+.bar{height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+#rainBar{height:100%;width:0;background:#3b82c4;transition:width .6s}
+.rain p{margin:8px 0 0}
+.advice{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.advice li{padding:8px 12px;border-radius:8px;background:var(--bg);border-left:4px solid var(--moss)}
+.advice li.warn{border-left-color:#d9822b}
+.advice li.bad{border-left-color:#d64545}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 12px}
+button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#chart{width:100%;height:160px;display:block}
+.actions{display:flex;gap:8px;margin-top:10px}
+footer{max-width:1100px;margin:0 auto;padding:0 20px 30px;color:var(--mute);font-size:.85rem}
+@media (max-width:760px){
+  .layout{grid-template-columns:1fr}
+  .stick{position:static;width:100%;height:auto;flex-direction:row;border-radius:18px}
+  .zone{flex:1!important;padding:14px 6px}
+  .air{padding-top:14px}.air strong{font-size:2rem}
+  .env{border-block:0;border-inline:3px solid var(--ink)}
+  .fill{inset:0 auto 0 0;width:var(--lvl,0%);height:100%}
+  .panels{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
